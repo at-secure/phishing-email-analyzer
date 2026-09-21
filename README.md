@@ -1,209 +1,166 @@
 # Phishing Email Analyzer
 
-I created this project to analyze Phishing Emails using Python.
+I created this project to analyze phishing emails using Python.
 
-This was to take a raw.eml email file and test parts of the email that can be used in a phishing investigation.
+The idea was to take a raw `.eml` email file and check different parts of the email that can be useful during a phishing investigation.
 
-What the project does
+## What the project does
 
 The analyzer checks:
 
 * Email headers
-
 * From address
-
 * Reply-To address
-
 * Return-Path
-
-
-
 * Received headers
-
-
-
 * Sending IP address
-
 * SPF
-
 * DKIM
-
 * DMARC
-
 * SPF and DKIM domain alignment
-
 * URLs inside the email
-
 * URLs using IP addresses
-
 * HTTP URLs
-
 * Suspicious indicators
 
-It then assigns a risk score to the email and stores the analysis in a json file.
+It then assigns a risk score based on the indicators found and stores the analysis in a JSON file.
 
-I also wrote a different script which takes the JSON results and renders out a very simple SOC report.
+I also wrote a separate script that takes the JSON results and creates a simple SOC report.
 
-Example
+## Example
 
-I composed an email that has a couple of warning signs.
+I created a test email with a couple of warning signs.
 
 The analyzer detected:
 
-``text
-
+```text
 SPF: FAIL
-
 DKIM: FAIL
-
 DMARC: FAIL
 
 Reply-To alignment: MISMATCH
-
 Return-Path alignment: MISMATCH
 
-
 Risk Score: 7
-
 Risk Level: HIGH
+```
 
-The analyzer further indicates the specific causes of the scored value: `text
+The analyzer also showed the specific reasons that contributed to the score:
 
+```text
 [!] SPF authentication failed
-
 [!] DKIM verification failed
+[!] Reply-To domain differs from From domain
+[!] Return-Path domain differs from From domain
+```
 
-[!] Reply-To domain differs from domain
+The score is only based on the indicators currently implemented in the project. It is not intended to prove that an email is malicious by itself.
 
-[!] Return-Path domain differs from domain
+## Project structure
 
-Project structure
-
-`text
-
-
+```text
 phishing-email-analyzer/
+│
+├── analyzer.py
+├── soc_report.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+│
+├── samples/
+│   ├── suspicious_email.eml
+│   ├── phishing_url_test.eml
+│   └── ip_url_test.eml
+│
+├── output/
+│   ├── sample_report.json
+│   └── soc_report.txt
+│
+└── tests/
+    ├── dkim_test.py
+    ├── dkim_verify.py
+    ├── dmarc_test.py
+    ├── spf_check.py
+    ├── spf_test.py
+    ├── phishing_url_test.eml
+    └── test_email.eml
+```
 
-analyzer.py
+## How I built it
 
-soc_report.py
+First, I set up a Python virtual environment for the project.
 
-requirements.txt
+Then I started working on the email analysis one part at a time.
 
-README.md
+One of the more difficult things for me was generating the report in JSON format. I wanted to keep the analysis results stored in a proper data structure instead of only printing everything to the terminal.
 
+While building the project, I learnt more about SPF, DKIM and DMARC and how they can be used when breaking down an email.
 
-.gitignore
+I also learnt that authentication and domain alignment are not exactly the same thing, so both need to be considered when analyzing an email.
 
-|
+## Running the project
 
-samples/
+Install the required packages:
 
-suspicious_email.eml
-
-
-phishingurltest.eml
-
-ipurltest.eml
-
-|
-
-output/
-
-sample_report.json
-
-soc_report.txt
-
-|
-
-tests/
-
-dkim_test.py
-
-dkim_verify.py
-
-dmarc_test.py
-
-spf_check.py
-
-spf_test.py
-
-phishingurltest.eml
-
-test_email.eml
-
-How I built it
-
-First, I set up a python virtual environment for the project.
-
-Then I sat down and started working on the analysing of email one by one.
-
-One of the more difficult things for me to do was to generate the report in JSON format. I was trying to keep the output of the analysis stored in a data structure instead of just simply outputting everything to the terminal.
-
-During the time I was building the project I learnt a little more about SPF, DKIM and DMARC and how they can be used when breaking down an email.
-
-And this is not quite the same thing, you also need to take into account domain alignment and the final authentication result.
-
-Running the project
-
-Install the required packages: `text
-
+```powershell
 pip install -r requirements.txt
+```
 
-Run the analyzer: `text
+Run the analyzer:
 
+```powershell
 python analyzer.py
+```
 
-2. How it works The program will request the.eml file.
+The program will ask for the path of the `.eml` file.
 
-Example: `text 
+Example:
 
-
+```text
 samples\suspicious_email.eml
+```
 
-The JSON report is saved to: `text
+The JSON report is saved to:
 
-
+```text
 output\sample_report.json
+```
 
-To create the SOC report: `text
+To create the SOC report:
 
+```powershell
 python soc_report.py
+```
 
 The report is saved to:
 
-`text
-
+```text
 output\soc_report.txt
+```
 
-Technologies
+## Technologies
 
 * Python
-
-
 * DNS
-
 * SPF
-
 * DKIM
-
 * DMARC
-
 * Email header analysis
-
 * URL analysis
-
 * IOC analysis
-
 * JSON
-
 * SOC investigation
 
-Current status
+## Current status
 
-This is the latest version of the project, and it works with the sample emails in the repo.
+This is the current version of the project, and it works with the sample emails included in the repository.
 
+The next thing I am planning to do is test the analyzer with actual `.eml` emails and continue improving the phishing detection logic.
 
-The next task I am planning to do is to try the analyzer with actual.eml emails and keep working on the phishing detection logic.
+For privacy reasons, actual emails containing confidential or private information should not be uploaded to a public repository.
 
-How to encrypt an email? For privacy reasons, actual emails carrying confidential or private content should not be uploaded to a public repository.
+## Limitations
+
+The SPF implementation is currently basic and does not cover every SPF mechanism and rule.
+
+The phishing detection logic is also simple at this stage. The risk score is based only on the indicators implemented in the project, so this should not be considered a complete phishing detection system.
