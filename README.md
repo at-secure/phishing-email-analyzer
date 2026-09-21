@@ -60,22 +60,22 @@ The score is only based on the indicators currently implemented in the project. 
 
 ```text
 phishing-email-analyzer/
-│
+|
 ├── analyzer.py
 ├── soc_report.py
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
-│
+|
 ├── samples/
 │   ├── suspicious_email.eml
 │   ├── phishing_url_test.eml
 │   └── ip_url_test.eml
-│
+|
 ├── output/
 │   ├── sample_report.json
 │   └── soc_report.txt
-│
+|
 └── tests/
     ├── dkim_test.py
     ├── dkim_verify.py
