@@ -1,0 +1,17 @@
+From: Microsoft Security <security@example.com>
+To: analyst@example.net
+Subject: Urgent Security Alert
+Date: Mon, 21 Sep 2026 10:30:00 +0530
+Reply-To: attacker@example.net
+Return-Path: <bounce@example.net>
+Message-ID: <987654321@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+Your account requires immediate verification.
+
+Please verify your account immediately:
+
+https://example-login.com/verify
+
+Failure to verify your account will result in suspension.

@@ -1,0 +1,26 @@
+{
+    "email": {
+        "from": "Microsoft Security <security@example.com>",
+        "to": "analyst@example.net",
+        "subject": "Urgent Security Alert",
+        "date": "Mon, 21 Sep 2026 10:30:00 +0530",
+        "reply_to": "attacker@example.net",
+        "return_path": "<bounce@example.net>"
+    },
+    "authentication": {
+        "spf_result": "fail",
+        "dkim_result": "FAIL",
+        "dmarc_result": "FAIL"
+    },
+    "risk_assessment": {
+        "score": 7,
+        "level": "HIGH",
+        "indicators": [
+            "SPF authentication failed",
+            "DKIM verification failed",
+            "Reply-To domain differs from From domain",
+            "Return-Path domain differs from From domain"
+        ]
+    },
+    "urls": []
+}

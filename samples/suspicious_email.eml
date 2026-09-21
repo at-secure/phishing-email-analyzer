@@ -1,0 +1,23 @@
+From: Microsoft Security <security@example.com>
+To: analyst@example.net
+Subject: Urgent Security Alert
+Date: Mon, 21 Sep 2026 10:30:00 +0530
+Reply-To: attacker@example.net
+Return-Path: <bounce@example.net>
+Message-ID: <123456789@example.com>
+Received: from mail.example.com (mail.example.com [192.0.2.10])
+        by mail.example.net with ESMTP id ABC123
+        for <analyst@example.net>;
+        Mon, 21 Sep 2026 10:30:01 +0530
+Authentication-Results: example.net;
+        spf=fail smtp.mailfrom=example.net;
+        dkim=fail;
+        dmarc=fail
+DKIM-Signature: v=1; a=rsa-sha256; d=example.com; s=mail; bh=FAKEHASH; b=FAKESIGNATURE
+
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+Your account requires immediate verification.
+
+Please review your account immediately.

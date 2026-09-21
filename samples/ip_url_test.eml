@@ -1,0 +1,14 @@
+From: Security Team <security@example.com>
+To: analyst@example.net
+Subject: Security Verification
+Date: Mon, 21 Sep 2026 10:30:00 +0530
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+Your account requires verification.
+
+Please verify your account here:
+
+http://192.0.2.50/login
+
+Thank you.

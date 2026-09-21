@@ -1,0 +1,48 @@
+
+============================================================
+                 SOC PHISHING EMAIL REPORT
+============================================================
+
+REPORT DATE
+-----------
+2026-09-22 02:01:04
+
+
+EMAIL INFORMATION
+-----------------
+From:        Microsoft Security <security@example.com>
+To:          analyst@example.net
+Subject:     Urgent Security Alert
+Date:        Mon, 21 Sep 2026 10:30:00 +0530
+Reply-To:    attacker@example.net
+Return-Path: <bounce@example.net>
+
+
+AUTHENTICATION ANALYSIS
+-----------------------
+SPF:         fail
+DKIM:        FAIL
+DMARC:       FAIL
+
+
+RISK ASSESSMENT
+---------------
+Risk Score:  7
+Risk Level:  HIGH
+
+
+DETECTED INDICATORS
+-------------------
+[!] SPF authentication failed
+[!] DKIM verification failed
+[!] Reply-To domain differs from From domain
+[!] Return-Path domain differs from From domain
+
+
+ANALYST CONCLUSION
+------------------
+Multiple suspicious indicators were detected, including authentication failures or sender-domain inconsistencies. The email should be investigated as potentially malicious.
+
+============================================================
+                     END OF REPORT
+============================================================
